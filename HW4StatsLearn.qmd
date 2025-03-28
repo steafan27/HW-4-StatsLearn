@@ -4,6 +4,11 @@ title: "HW4StatsLearn"
 
 # HW 4 Stats Learn
 
+```{r}
+library(ISLR)
+library(e1071)
+```
+
 ## Question 1:
 
 a.) A real life data example of when a false negative would be less tolerable than a false positive would be a medical screening for a leathal infectious disease.
@@ -75,11 +80,16 @@ myDat <- data.frame(x1,x2,y)
 ```
 
 ```{r}
-train_index <- sample(seq_len(nrow(myDat)), size = 0.8 * nrow(myDat))
+set.seed(1)
+train_index <- sample(1:nrow(myDat), size = 0.8 * nrow(myDat), replace = F)
 train_data <- myDat[train_index, ]  # 80% training data
 test_data  <- myDat[-train_index, ] # 20% testing data
 
 # Check dimensions
-dim(train_data)
-dim(test_data)
+#dim(train_data)
+#dim(test_data)
+```
+
+```{r}
+
 ```
