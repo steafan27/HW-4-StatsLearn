@@ -13,3 +13,73 @@ b.) A real life data example of when a false positive would be less tolerable th
 c.) In the case where a false positive and a false negative are of equal importance would be in the case of a cancer screening, having the illness and thinking you have the illness would still result in the same amount of anxiety and harmful chemo treatment should you choose to seek that.
 
 ## Question 2:
+
+a.)
+
+```{r}
+attach(USArrests)
+```
+
+```{r}
+pr.out <- prcomp(USArrests,scale=TRUE)
+(pr.out$sdev)
+```
+
+```{r}
+pr.var <- pr.out$sdev^2
+pve <- pr.var / sum(pr.var)
+(pve)
+```
+
+```{r}
+#present our results in plot
+plot(pve, xlab="Principal Component", ylab=" Proportion of Variance Explained ",ylim=c(0,1) ,type='b')
+```
+
+An explanation: As you can see, the level of variance tends to decrease as the Principal Component iterates up (PCA are elements of the Natural number system only). This is because each Principle components impact decreases from that of the first, thus making the first the most important and the last the last significant.
+
+b.)
+
+```{r}
+#obtain loadings from prcomp() function
+loadings<-pr.out$rotation
+#scale dataset just to make sure data we us is consistent
+USArrests2 <- scale(USArrests)
+#convert dataset into matrix, square each value in matrix, and sum them up 
+#to get the denominator of the equation
+sumvalue<-sum(as.matrix(USArrests2)^2)
+#multiple these two matrix and then sqaure
+num<-(as.matrix(USArrests2)%*%loadings)^2
+#calculate the column value for num matrix
+colvalue<-c()
+for (i in 1:length(num[1,])){
+  colvalue[i]<-sum(num[,i])
+}
+#calculate new pve
+pve1<-colvalue/sumvalue
+(pve1)
+```
+
+## Question 3:
+
+```{r}
+set.seed(1)
+x1 <- rnorm(200)
+x2 <- 4 * x1^2 + 1 + rnorm(200)
+y <- as.factor(c(rep(1,100), rep(-1,100)))
+x2[y==1] <- x2[y==1] + 3
+x2[y==-1] <- x2[y==-1]-3
+plot (x1[y==1], x2[y==1], col = "red", xlab = "X", ylab = "Y", ylim = c(-6, 30))
+points(x1[y==-1], x2[y==-1], col = "blue")
+myDat <- data.frame(x1,x2,y)
+```
+
+```{r}
+train_index <- sample(seq_len(nrow(myDat)), size = 0.8 * nrow(myDat))
+train_data <- myDat[train_index, ]  # 80% training data
+test_data  <- myDat[-train_index, ] # 20% testing data
+
+# Check dimensions
+dim(train_data)
+dim(test_data)
+```
