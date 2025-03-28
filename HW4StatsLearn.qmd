@@ -4,6 +4,12 @@ title: "HW4StatsLearn"
 
 # HW 4 Stats Learn
 
-```{r}
-1 + 1
-```
+## Question 1:
+
+a.) A real life data example of when a false negative would be less tolerable than a false positive would be a medical screening for a leathal infectious disease.
+
+b.) A real life data example of when a false positive would be less tolerable than a false negative would be in the case of a security system, should someone break in or not, to know would be more favorable than to not know and someone actually break in to your home.
+
+c.) In the case where a false positive and a false negative are of equal importance would be in the case of a cancer screening, having the illness and thinking you have the illness would still result in the same amount of anxiety and harmful chemo treatment should you choose to seek that.
+
+## Question 2:
