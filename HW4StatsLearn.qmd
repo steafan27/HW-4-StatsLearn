@@ -6,7 +6,7 @@ title: "HW4StatsLearn"
 
 ```{r}
 library(ISLR)
-library(e1071)
+library(e1071) #For Svm
 ```
 
 ## Question 1:
@@ -89,6 +89,182 @@ test_data  <- myDat[-train_index, ] # 20% testing data
 #dim(train_data)
 #dim(test_data)
 ```
+
+i.)
+
+```{r}
+set.seed(1)
+svm_linear <- svm(y ~ . , kernel = "linear", data = train_data, cost = 0.01)
+summary(svm_linear)
+
+```
+
+Error Rate Function:
+
+```{r}
+# calculate error rate
+calc_error_rate <- function(svm_model, dataset, true_classes) {
+  confusion_matrix <- table(predict(svm_model, dataset), true_classes)
+  return(1 - sum(diag(confusion_matrix)) / sum(confusion_matrix))
+}
+
+```
+
+So things are clear: What is happening here is a function declaration (calc_error_rate) we will be using it a few times so it is best to have it ready to go every time. So we pass a svm model, a data set (train or testing) and the true classes (response variable data). we then pass the svm model and the data set into the built in prediction function. and we take that out put as well as the true classes and put those two values into a table and store it into a variable appropriately called "confusion matrix". We then return from the function 1 - the sum of the correct entries of the confusion matrix divided by all the entries in the confusion matrix. It is a bit esoteric but once you understand confusion matrix and how to calculate error it is very straightforward.
+
+Training error:
+
+```{r}
+cat("Training Error Rate:", 100 * calc_error_rate(svm_linear, train_data, train_data$y), "%\n")
+
+```
+
+Testing error:
+
+```{r}
+cat("Test Error Rate:", 100 * calc_error_rate(svm_linear, test_data, test_data$y), "%\n")
+```
+
+Tune for linear Svm model with respect to cost.
+
+```{r}
+set.seed(1)
+svm_tune_linear <- tune(svm, y ~ . , data = myDat, kernel = "linear", 
+                  ranges = list(cost = seq(0.01, 10, length = 25)))
+summary(svm_tune_linear)
+
+```
+
+Tuned training error:
+
+```{r}
+set.seed(1)
+svm_linear <- svm(y ~ . , kernel = "linear", 
+                  data = train_data, cost = svm_tune_linear$best.parameters$cost)
+
+cat("Training Error Rate:", 100 * calc_error_rate(svm_linear, train_data, train_data$y), "%\n")
+```
+
+Tuned testing error:
+
+```{r}
+cat("Test Error Rate:", 100 * calc_error_rate(svm_linear, test_data, test_data$y), "%\n")
+```
+
+ii\)
+
+```{r}
+set.seed(1)
+svm_poly <- svm(y ~ . , data = train_data, kernel = "poly", degree = 2, cost = .01)
+summary(svm_poly)
+```
+
+Training error:
+
+```{r}
+cat("Training Error Rate:", 100 * calc_error_rate(svm_poly, train_data, train_data$y), "%\n")
+
+```
+
+Testing error:
+
+```{r}
+cat("Training Error Rate:", 100 * calc_error_rate(svm_poly, test_data, test_data$y), "%\n")
+```
+
+Tune
+
+```{r}
+set.seed(1)
+svm_tune_poly <- tune(svm, y ~ . , data = myDat, kernel = "poly",
+                  ranges = list(cost = seq(0.01, 10, length = 25)))
+summary(svm_tune_poly)
+```
+
+Tuned training error:
+
+```{r}
+set.seed(1)
+svm_poly <- svm(y ~ . , data = myDat, kernel = "poly",
+                   cost = svm_tune_poly$best.parameters$cost)
+
+cat("Training Error Rate:", 100 * calc_error_rate(svm_poly, train_data, train_data$y), "%\n")
+```
+
+Tuned testing error:
+
+```{r}
+cat("Training Error Rate:", 100 * calc_error_rate(svm_poly, test_data, test_data$y), "%\n")
+```
+
+iii.)
+
+```{r}
+set.seed(1)
+svm_radial <- svm(y ~ . , data = train_data, kernel = "radial")
+summary(svm_radial)
+```
+
+Training error:
+
+```{r}
+cat("Training Error Rate:", 100 * calc_error_rate(svm_radial, train_data, train_data$y), "%\n")
+```
+
+Testing error:
+
+```{r}
+cat("Test Error Rate:", 100 * calc_error_rate(svm_radial, test_data, test_data$y), "%\n")
+```
+
+Tune
+
+```{r}
+set.seed(1)
+svm_tune_radial <- tune(svm, y ~ . , data = train_data, kernel = "radial",
+                  ranges = list(cost = seq(0.01, 10, length = 25)))
+summary(svm_tune_radial)
+```
+
+Tuned training error:
+
+```{r}
+svm_radial <- svm(y ~ . , data = train_data, kernel = "radial",
+                   cost = svm_tune_radial$best.parameters$cost)
+
+cat("Training Error Rate:", 100 * calc_error_rate(svm_radial, train_data, train_data$y), "%\n")
+```
+
+Tuned testing error:
+
+```{r}
+cat("Test Error Rate:", 100 * calc_error_rate(svm_radial, test_data, test_data$y), "%\n")
+```
+
+## Question 4
+
+a.)
+
+```{r}
+median <- median(Auto$mpg)
+Auto$high <- ifelse(Auto$mpg > median, 1, 0)
+```
+
+b.)
+
+```{r}
+set.seed(1)
+auto_tune <- tune(svm,high~.,data=Auto,kernel="linear", ranges=list(cost=c(0.001, 0.01, 0.1, 1,5,10,100)))
+summary(auto_tune)
+```
+
+Tuned train error
+
+```{r}
+
+```
+
+Tuned test error
 
 ```{r}
 
