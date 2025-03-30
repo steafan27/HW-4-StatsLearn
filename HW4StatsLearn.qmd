@@ -287,3 +287,175 @@ set.seed(1)
 auto_tune_poly <- tune(svm,high~.,data=Auto,kernel="polynomial",ranges=list(cost=c(0.1,1,10,100,1000),gamma=c(0.5,1,2,3,4),degree=c(2,3,4)))
 summary(auto_tune_poly)
 ```
+
+## Question 5
+
+a.)
+
+```{r}
+set.seed(1)
+
+trainOJ <- sample(nrow(OJ), 800)
+OJ_train <- OJ[trainOJ, ]
+OJ_test <- OJ[-trainOJ, ]
+```
+
+b.)
+
+```{r}
+set.seed(1)
+
+svm_linear_OJ <- svm(Purchase ~ . , kernel = "linear", data = OJ_train, cost = 0.01)
+summary(svm_linear_OJ)
+```
+
+Training error: Linear
+
+```{r}
+cat("Training Error Rate:", 100 * calc_error_rate(svm_linear_OJ, OJ_train, OJ_train$Purchase), "%\n")
+```
+
+Testing error: Linear
+
+```{r}
+cat("Test Error Rate:", 100 * calc_error_rate(svm_linear_OJ, OJ_test, OJ_test$Purchase), "%\n")
+
+```
+
+Tune: Linear
+
+```{r}
+set.seed(1)
+
+svm_tune_OJ <- tune(svm, Purchase ~ . , data = OJ, kernel = "linear", 
+                  ranges = list(cost = seq(0.01, 10, length = 50)))
+summary(svm_tune_OJ)
+```
+
+Tuned Training Error: Linear
+
+```{r}
+set.seed(1)
+svm_linear <- svm(Purchase ~ . , kernel = "linear", 
+                  data = OJ_train, cost = svm_tune_OJ$best.parameters$cost)
+
+cat("Training Error Rate:", 100 * calc_error_rate(svm_linear, OJ_train, OJ_train$Purchase), "%\n")
+```
+
+Tuned Testing Error: Linear
+
+```{r}
+cat("Test Error Rate:", 100 * calc_error_rate(svm_linear, OJ_test, OJ_test$Purchase), "%\n")
+```
+
+c.)
+
+```{r}
+set.seed(1)
+
+svm_poly_OJ <- svm(Purchase ~ . , data = OJ_train, kernel = "poly", degree = 2)
+summary(svm_poly_OJ)
+```
+
+```{r}
+cat("Training Error Rate:", 100 * calc_error_rate(svm_poly_OJ, OJ_train, OJ_train$Purchase), "%\n")
+
+```
+
+```{r}
+cat("Test Error Rate:", 100 * calc_error_rate(svm_poly_OJ, OJ_test, OJ_test$Purchase), "%\n")
+
+```
+
+```{r}
+set.seed(1)
+
+svm_tune_poly_OJ <- tune(svm, Purchase ~ . , data = OJ_train, kernel = "poly", 
+                  degree = 2, ranges = list(cost = seq(0.01, 10, length = 100)))
+summary(svm_tune_poly_OJ)
+```
+
+```{r}
+set.seed(1)
+svm_poly_OJ <- svm(Purchase ~ . , data = OJ_train, kernel = "poly", 
+                 degree = 2, cost = svm_tune_poly_OJ$best.parameters$cost)
+
+cat("Training Error Rate:", 100 * calc_error_rate(svm_poly_OJ, OJ_train, OJ_train$Purchase), "%\n")
+```
+
+```{r}
+cat("Test Error Rate:", 100 * calc_error_rate(svm_poly_OJ, OJ_test, OJ_test$Purchase), "%\n")
+```
+
+d.)
+
+```{r}
+set.seed(1)
+
+svm_radial_OJ <- svm(Purchase ~ . , data = OJ_train, kernel = "radial")
+summary(svm_radial_OJ)
+```
+
+Train
+
+```{r}
+cat("Training Error Rate:", 100 * calc_error_rate(svm_radial_OJ, OJ_train, OJ_train$Purchase), "%\n")
+```
+
+Test
+
+```{r}
+cat("Test Error Rate:", 100 * calc_error_rate(svm_radial_OJ, OJ_test, OJ_test$Purchase), "%\n")
+
+```
+
+Tune
+
+```{r}
+set.seed(1)
+
+svm_tune_OJ_radial <- tune(svm, Purchase ~ . , data = OJ_train, kernel = "radial",
+                  ranges = list(cost = seq(0.01, 10, length = 100)))
+summary(svm_tune_OJ_radial)
+```
+
+Train Tune Error
+
+```{r}
+set.seed(1)
+svm_radial_OJ <- svm(Purchase ~ . , data = OJ_train, kernel = "radial",
+                   cost = svm_tune_OJ_radial$best.parameters$cost)
+
+cat("Training Error Rate:", 100 * calc_error_rate(svm_radial_OJ, OJ_train, OJ_train$Purchase), "%\n")
+```
+
+Test Tune Error
+
+```{r}
+cat("Test Error Rate:", 100 * calc_error_rate(svm_radial_OJ, OJ_test, OJ_test$Purchase), "%\n")
+
+```
+
+e.)
+
+## Question 6
+
+a.)
+
+```{r}
+set.seed(1)
+
+trainIrisIndex <- sample(1:nrow(iris), 0.8 * nrow(iris))
+train_iris <- iris[trainIrisIndex, ]
+test_iris <- iris[-trainIrisIndex, ]
+```
+
+b.)
+
+```{r}
+
+```
+
+c.)
+
+## Question 7
