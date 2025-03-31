@@ -49,7 +49,7 @@ b.)
 ```{r}
 #obtain loadings from prcomp() function
 loadings<-pr.out$rotation
-#scale dataset just to make sure data we us is consistent
+#scale dataset just to make sure data we use is consistent
 USArrests2 <- scale(USArrests)
 #convert dataset into matrix, square each value in matrix, and sum them up 
 #to get the denominator of the equation
@@ -67,6 +67,8 @@ pve1<-colvalue/sumvalue
 ```
 
 ## Question 3:
+
+a.)
 
 ```{r}
 set.seed(1)
@@ -90,6 +92,8 @@ test_data  <- myDat[-train_index, ] # 20% testing data
 #dim(train_data)
 #dim(test_data)
 ```
+
+b.)
 
 i.)
 
@@ -135,6 +139,8 @@ svm_tune_linear <- tune(svm, y ~ . , data = myDat, kernel = "linear",
 summary(svm_tune_linear)
 
 ```
+
+Optimal Cost Value: .8425
 
 Tuned training error:
 
@@ -182,6 +188,8 @@ svm_tune_poly <- tune(svm, y ~ . , data = myDat, kernel = "poly",
 summary(svm_tune_poly)
 ```
 
+Optimal Cost Value: 5.005
+
 Tuned training error:
 
 ```{r}
@@ -227,6 +235,8 @@ svm_tune_radial <- tune(svm, y ~ . , data = train_data, kernel = "radial",
 summary(svm_tune_radial)
 ```
 
+Optimal Cost Value: 10
+
 Tuned training error:
 
 ```{r}
@@ -241,6 +251,10 @@ Tuned testing error:
 ```{r}
 cat("Test Error Rate:", 100 * calc_error_rate(svm_radial, test_data, test_data$y), "%\n")
 ```
+
+It seems that the best tuned training error rate with respect to cost was, the radial kernel also at 0%.
+
+It seems that the best tuned testing error rate with respect to cost was, the radial kernel at 0%.
 
 ## Question 4
 
