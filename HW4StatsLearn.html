@@ -1,0 +1,2155 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>HW4StatsLearn</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="HW4StatsLearn_files/libs/clipboard/clipboard.min.js"></script>
+<script src="HW4StatsLearn_files/libs/quarto-html/quarto.js"></script>
+<script src="HW4StatsLearn_files/libs/quarto-html/popper.min.js"></script>
+<script src="HW4StatsLearn_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="HW4StatsLearn_files/libs/quarto-html/anchor.min.js"></script>
+<link href="HW4StatsLearn_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="HW4StatsLearn_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="HW4StatsLearn_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="HW4StatsLearn_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="HW4StatsLearn_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">HW4StatsLearn</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="hw-4-stats-learn" class="level1">
+<h1>HW 4 Stats Learn</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(e1071) <span class="co">#For Svm</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="question-1" class="level2">
+<h2 class="anchored" data-anchor-id="question-1">Question 1:</h2>
+<p>a.) A real life data example of when a false negative would be less tolerable than a false positive would be a medical screening for a lethal infectious disease.</p>
+<p>b.) A real life data example of when a false positive would be less tolerable than a false negative would be in the case of a security system, should someone break in or not, to know would be more favorable than to not know and someone actually break in to your home.</p>
+<p>c.) In the case where a false positive and a false negative are of equal importance would be in the case of a cancer screening, having the illness and thinking you have the illness would still result in the same amount of anxiety and harmful chemo treatment should you choose to seek that.</p>
+</section>
+<section id="question-2" class="level2">
+<h2 class="anchored" data-anchor-id="question-2">Question 2:</h2>
+<p>a.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(USArrests)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pr.out <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(USArrests,<span class="at">scale=</span><span class="cn">TRUE</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>(pr.out<span class="sc">$</span>sdev)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.5748783 0.9948694 0.5971291 0.4164494</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pr.var <span class="ot">&lt;-</span> pr.out<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>pve <span class="ot">&lt;-</span> pr.var <span class="sc">/</span> <span class="fu">sum</span>(pr.var)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>(pve)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.62006039 0.24744129 0.08914080 0.04335752</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#present our results in plot</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pve, <span class="at">xlab=</span><span class="st">"Principal Component"</span>, <span class="at">ylab=</span><span class="st">" Proportion of Variance Explained "</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>) ,<span class="at">type=</span><span class="st">'b'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="HW4StatsLearn_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>An explanation: As you can see, the level of variance tends to decrease as the Principal Component iterates up (PCA are elements of the Natural number system only). This is because each Principle components impact decreases from that of the first, thus making the first the most important and the last the last significant.</p>
+<p>b.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#obtain loadings from prcomp() function</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>loadings<span class="ot">&lt;-</span>pr.out<span class="sc">$</span>rotation</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#scale dataset just to make sure data we use is consistent</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>USArrests2 <span class="ot">&lt;-</span> <span class="fu">scale</span>(USArrests)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#convert dataset into matrix, square each value in matrix, and sum them up </span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#to get the denominator of the equation</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>sumvalue<span class="ot">&lt;-</span><span class="fu">sum</span>(<span class="fu">as.matrix</span>(USArrests2)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#multiple these two matrix and then sqaure</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>num<span class="ot">&lt;-</span>(<span class="fu">as.matrix</span>(USArrests2)<span class="sc">%*%</span>loadings)<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate the column value for num matrix</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>colvalue<span class="ot">&lt;-</span><span class="fu">c</span>()</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(num[<span class="dv">1</span>,])){</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  colvalue[i]<span class="ot">&lt;-</span><span class="fu">sum</span>(num[,i])</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate new pve</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>pve1<span class="ot">&lt;-</span>colvalue<span class="sc">/</span>sumvalue</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>(pve1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.62006039 0.24744129 0.08914080 0.04335752</code></pre>
+</div>
+</div>
+</section>
+<section id="question-3" class="level2">
+<h2 class="anchored" data-anchor-id="question-3">Question 3:</h2>
+<p>a.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">200</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="dv">4</span> <span class="sc">*</span> x1<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">1</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">200</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">100</span>), <span class="fu">rep</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">100</span>)))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>x2[y<span class="sc">==</span><span class="dv">1</span>] <span class="ot">&lt;-</span> x2[y<span class="sc">==</span><span class="dv">1</span>] <span class="sc">+</span> <span class="dv">3</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>x2[y<span class="sc">==-</span><span class="dv">1</span>] <span class="ot">&lt;-</span> x2[y<span class="sc">==-</span><span class="dv">1</span>]<span class="sc">-</span><span class="dv">3</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span> (x1[y<span class="sc">==</span><span class="dv">1</span>], x2[y<span class="sc">==</span><span class="dv">1</span>], <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">xlab =</span> <span class="st">"X"</span>, <span class="at">ylab =</span> <span class="st">"Y"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">6</span>, <span class="dv">30</span>))</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(x1[y<span class="sc">==-</span><span class="dv">1</span>], x2[y<span class="sc">==-</span><span class="dv">1</span>], <span class="at">col =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="HW4StatsLearn_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>myDat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x1,x2,y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>train_index <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(myDat), <span class="at">size =</span> <span class="fl">0.8</span> <span class="sc">*</span> <span class="fu">nrow</span>(myDat), <span class="at">replace =</span> F)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>train_data <span class="ot">&lt;-</span> myDat[train_index, ]  <span class="co"># 80% training data</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>test_data  <span class="ot">&lt;-</span> myDat[<span class="sc">-</span>train_index, ] <span class="co"># 20% testing data</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Check dimensions</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">#dim(train_data)</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">#dim(test_data)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>b.)</p>
+<p>i.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>svm_linear <span class="ot">&lt;-</span> <span class="fu">svm</span>(y <span class="sc">~</span> . , <span class="at">kernel =</span> <span class="st">"linear"</span>, <span class="at">data =</span> train_data, <span class="at">cost =</span> <span class="fl">0.01</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(svm_linear)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+svm(formula = y ~ ., data = train_data, kernel = "linear", cost = 0.01)
+
+
+Parameters:
+   SVM-Type:  C-classification 
+ SVM-Kernel:  linear 
+       cost:  0.01 
+
+Number of Support Vectors:  144
+
+ ( 72 72 )
+
+
+Number of Classes:  2 
+
+Levels: 
+ -1 1</code></pre>
+</div>
+</div>
+<p>Error Rate Function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate error rate</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>calc_error_rate <span class="ot">&lt;-</span> <span class="cf">function</span>(svm_model, dataset, true_classes) {</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  confusion_matrix <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="fu">predict</span>(svm_model, dataset), true_classes)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fu">sum</span>(<span class="fu">diag</span>(confusion_matrix)) <span class="sc">/</span> <span class="fu">sum</span>(confusion_matrix))</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>So things are clear: What is happening here is a function declaration (calc_error_rate) we will be using it a few times so it is best to have it ready to go every time. So we pass a svm model, a data set (train or testing) and the true classes (response variable data). we then pass the svm model and the data set into the built in prediction function. and we take that out put as well as the true classes and put those two values into a table and store it into a variable appropriately called “confusion matrix”. We then return from the function 1 - the sum of the correct entries of the confusion matrix divided by all the entries in the confusion matrix. It is a bit esoteric but once you understand confusion matrix and how to calculate error it is very straightforward.</p>
+<p>Training error:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Training Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_linear, train_data, train_data<span class="sc">$</span>y), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Training Error Rate: 39.375 %</code></pre>
+</div>
+</div>
+<p>Testing error:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Test Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_linear, test_data, test_data<span class="sc">$</span>y), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Test Error Rate: 57.5 %</code></pre>
+</div>
+</div>
+<p>Tune for linear Svm model with respect to cost.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>svm_tune_linear <span class="ot">&lt;-</span> <span class="fu">tune</span>(svm, y <span class="sc">~</span> . , <span class="at">data =</span> myDat, <span class="at">kernel =</span> <span class="st">"linear"</span>, </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ranges =</span> <span class="fu">list</span>(<span class="at">cost =</span> <span class="fu">seq</span>(<span class="fl">0.01</span>, <span class="dv">10</span>, <span class="at">length =</span> <span class="dv">25</span>)))</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(svm_tune_linear)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Parameter tuning of 'svm':
+
+- sampling method: 10-fold cross validation 
+
+- best parameters:
+   cost
+ 0.8425
+
+- best performance: 0.165 
+
+- Detailed performance results:
+       cost error dispersion
+1   0.01000 0.385 0.12258784
+2   0.42625 0.175 0.04859127
+3   0.84250 0.165 0.04116363
+4   1.25875 0.165 0.04116363
+5   1.67500 0.165 0.04116363
+6   2.09125 0.165 0.04116363
+7   2.50750 0.165 0.04116363
+8   2.92375 0.165 0.04116363
+9   3.34000 0.165 0.04116363
+10  3.75625 0.165 0.04116363
+11  4.17250 0.165 0.04116363
+12  4.58875 0.165 0.04116363
+13  5.00500 0.165 0.04116363
+14  5.42125 0.165 0.04116363
+15  5.83750 0.165 0.04116363
+16  6.25375 0.165 0.04116363
+17  6.67000 0.165 0.04116363
+18  7.08625 0.165 0.04116363
+19  7.50250 0.165 0.04116363
+20  7.91875 0.165 0.04116363
+21  8.33500 0.165 0.04116363
+22  8.75125 0.165 0.04116363
+23  9.16750 0.165 0.04116363
+24  9.58375 0.165 0.04116363
+25 10.00000 0.165 0.04116363</code></pre>
+</div>
+</div>
+<p>Optimal Cost Value: .8425</p>
+<p>Tuned training error:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>svm_linear <span class="ot">&lt;-</span> <span class="fu">svm</span>(y <span class="sc">~</span> . , <span class="at">kernel =</span> <span class="st">"linear"</span>, </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> train_data, <span class="at">cost =</span> svm_tune_linear<span class="sc">$</span>best.parameters<span class="sc">$</span>cost)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Training Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_linear, train_data, train_data<span class="sc">$</span>y), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Training Error Rate: 15.625 %</code></pre>
+</div>
+</div>
+<p>Tuned testing error:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Test Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_linear, test_data, test_data<span class="sc">$</span>y), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Test Error Rate: 17.5 %</code></pre>
+</div>
+</div>
+<p>ii)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>svm_poly <span class="ot">&lt;-</span> <span class="fu">svm</span>(y <span class="sc">~</span> . , <span class="at">data =</span> train_data, <span class="at">kernel =</span> <span class="st">"poly"</span>, <span class="at">degree =</span> <span class="dv">2</span>, <span class="at">cost =</span> .<span class="dv">01</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(svm_poly)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+svm(formula = y ~ ., data = train_data, kernel = "poly", degree = 2, 
+    cost = 0.01)
+
+
+Parameters:
+   SVM-Type:  C-classification 
+ SVM-Kernel:  polynomial 
+       cost:  0.01 
+     degree:  2 
+     coef.0:  0 
+
+Number of Support Vectors:  153
+
+ ( 75 78 )
+
+
+Number of Classes:  2 
+
+Levels: 
+ -1 1</code></pre>
+</div>
+</div>
+<p>Training error:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Training Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_poly, train_data, train_data<span class="sc">$</span>y), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Training Error Rate: 46.875 %</code></pre>
+</div>
+</div>
+<p>Testing error:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Training Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_poly, test_data, test_data<span class="sc">$</span>y), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Training Error Rate: 62.5 %</code></pre>
+</div>
+</div>
+<p>Tune</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>svm_tune_poly <span class="ot">&lt;-</span> <span class="fu">tune</span>(svm, y <span class="sc">~</span> . , <span class="at">data =</span> myDat, <span class="at">kernel =</span> <span class="st">"poly"</span>,</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ranges =</span> <span class="fu">list</span>(<span class="at">cost =</span> <span class="fu">seq</span>(<span class="fl">0.01</span>, <span class="dv">10</span>, <span class="at">length =</span> <span class="dv">25</span>)))</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(svm_tune_poly)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Parameter tuning of 'svm':
+
+- sampling method: 10-fold cross validation 
+
+- best parameters:
+  cost
+ 5.005
+
+- best performance: 0.23 
+
+- Detailed performance results:
+       cost error dispersion
+1   0.01000 0.550 0.09428090
+2   0.42625 0.290 0.08096639
+3   0.84250 0.280 0.09775252
+4   1.25875 0.265 0.08834906
+5   1.67500 0.255 0.08959787
+6   2.09125 0.250 0.09128709
+7   2.50750 0.255 0.08959787
+8   2.92375 0.250 0.09128709
+9   3.34000 0.245 0.09846037
+10  3.75625 0.240 0.10749677
+11  4.17250 0.235 0.11067972
+12  4.58875 0.235 0.11067972
+13  5.00500 0.230 0.11352924
+14  5.42125 0.230 0.11352924
+15  5.83750 0.235 0.11067972
+16  6.25375 0.235 0.11067972
+17  6.67000 0.235 0.11067972
+18  7.08625 0.235 0.11067972
+19  7.50250 0.235 0.11067972
+20  7.91875 0.235 0.11067972
+21  8.33500 0.230 0.10852547
+22  8.75125 0.230 0.10852547
+23  9.16750 0.230 0.10852547
+24  9.58375 0.230 0.10852547
+25 10.00000 0.230 0.10852547</code></pre>
+</div>
+</div>
+<p>Optimal Cost Value: 5.005</p>
+<p>Tuned training error:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>svm_poly <span class="ot">&lt;-</span> <span class="fu">svm</span>(y <span class="sc">~</span> . , <span class="at">data =</span> myDat, <span class="at">kernel =</span> <span class="st">"poly"</span>,</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">cost =</span> svm_tune_poly<span class="sc">$</span>best.parameters<span class="sc">$</span>cost)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Training Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_poly, train_data, train_data<span class="sc">$</span>y), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Training Error Rate: 25 %</code></pre>
+</div>
+</div>
+<p>Tuned testing error:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Training Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_poly, test_data, test_data<span class="sc">$</span>y), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Training Error Rate: 12.5 %</code></pre>
+</div>
+</div>
+<p>iii.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>svm_radial <span class="ot">&lt;-</span> <span class="fu">svm</span>(y <span class="sc">~</span> . , <span class="at">data =</span> train_data, <span class="at">kernel =</span> <span class="st">"radial"</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(svm_radial)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+svm(formula = y ~ ., data = train_data, kernel = "radial")
+
+
+Parameters:
+   SVM-Type:  C-classification 
+ SVM-Kernel:  radial 
+       cost:  1 
+
+Number of Support Vectors:  55
+
+ ( 27 28 )
+
+
+Number of Classes:  2 
+
+Levels: 
+ -1 1</code></pre>
+</div>
+</div>
+<p>Training error:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Training Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_radial, train_data, train_data<span class="sc">$</span>y), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Training Error Rate: 0.625 %</code></pre>
+</div>
+</div>
+<p>Testing error:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Test Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_radial, test_data, test_data<span class="sc">$</span>y), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Test Error Rate: 2.5 %</code></pre>
+</div>
+</div>
+<p>Tune</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>svm_tune_radial <span class="ot">&lt;-</span> <span class="fu">tune</span>(svm, y <span class="sc">~</span> . , <span class="at">data =</span> train_data, <span class="at">kernel =</span> <span class="st">"radial"</span>,</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ranges =</span> <span class="fu">list</span>(<span class="at">cost =</span> <span class="fu">seq</span>(<span class="fl">0.01</span>, <span class="dv">10</span>, <span class="at">length =</span> <span class="dv">25</span>)))</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(svm_tune_radial)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Parameter tuning of 'svm':
+
+- sampling method: 10-fold cross validation 
+
+- best parameters:
+ cost
+   10
+
+- best performance: 0.0125 
+
+- Detailed performance results:
+       cost   error dispersion
+1   0.01000 0.46875 0.14508738
+2   0.42625 0.09375 0.13581672
+3   0.84250 0.06250 0.10206207
+4   1.25875 0.06250 0.10206207
+5   1.67500 0.05625 0.09969572
+6   2.09125 0.04375 0.08359334
+7   2.50750 0.03750 0.07905694
+8   2.92375 0.03750 0.07905694
+9   3.34000 0.03125 0.07933097
+10  3.75625 0.03125 0.07933097
+11  4.17250 0.03125 0.07933097
+12  4.58875 0.03125 0.07933097
+13  5.00500 0.02500 0.06038074
+14  5.42125 0.02500 0.06038074
+15  5.83750 0.02500 0.06038074
+16  6.25375 0.02500 0.06038074
+17  6.67000 0.02500 0.06038074
+18  7.08625 0.02500 0.06038074
+19  7.50250 0.02500 0.06038074
+20  7.91875 0.01875 0.04218428
+21  8.33500 0.01875 0.04218428
+22  8.75125 0.01875 0.04218428
+23  9.16750 0.01875 0.04218428
+24  9.58375 0.01875 0.04218428
+25 10.00000 0.01250 0.02635231</code></pre>
+</div>
+</div>
+<p>Optimal Cost Value: 10</p>
+<p>Tuned training error:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>svm_radial <span class="ot">&lt;-</span> <span class="fu">svm</span>(y <span class="sc">~</span> . , <span class="at">data =</span> train_data, <span class="at">kernel =</span> <span class="st">"radial"</span>,</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">cost =</span> svm_tune_radial<span class="sc">$</span>best.parameters<span class="sc">$</span>cost)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Training Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_radial, train_data, train_data<span class="sc">$</span>y), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Training Error Rate: 0 %</code></pre>
+</div>
+</div>
+<p>Tuned testing error:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Test Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_radial, test_data, test_data<span class="sc">$</span>y), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Test Error Rate: 0 %</code></pre>
+</div>
+</div>
+<p>It seems that the best tuned training error rate with respect to cost was, the radial kernel also at 0%.</p>
+<p>It seems that the best tuned testing error rate with respect to cost was, the radial kernel at 0%.</p>
+</section>
+<section id="question-4" class="level2">
+<h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
+<p>a.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>median <span class="ot">&lt;-</span> <span class="fu">median</span>(Auto<span class="sc">$</span>mpg)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>Auto<span class="sc">$</span>high <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(Auto<span class="sc">$</span>mpg <span class="sc">&gt;</span> median, <span class="dv">1</span>, <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>b.)</p>
+<p><strong>Tuned Linear Svm</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>auto_tune <span class="ot">&lt;-</span> <span class="fu">tune</span>(svm,high<span class="sc">~</span>.,<span class="at">data=</span>Auto,<span class="at">kernel=</span><span class="st">"linear"</span>, <span class="at">ranges=</span><span class="fu">list</span>(<span class="at">cost=</span><span class="fu">c</span>(<span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">100</span>)))</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(auto_tune)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Parameter tuning of 'svm':
+
+- sampling method: 10-fold cross validation 
+
+- best parameters:
+ cost
+    1
+
+- best performance: 0.07424404 
+
+- Detailed performance results:
+   cost      error dispersion
+1 1e-03 0.09351655 0.02013225
+2 1e-02 0.08379323 0.02362659
+3 1e-01 0.07898470 0.02693908
+4 1e+00 0.07424404 0.02693697
+5 5e+00 0.08224114 0.03224958
+6 1e+01 0.08874314 0.03324316
+7 1e+02 0.11389623 0.03717388</code></pre>
+</div>
+</div>
+<p>Optimal Cost Value is 1.</p>
+<p>Cross Validation Error: 0.0742</p>
+<p><strong>Tuned Radial Svm</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>auto_tune_radial <span class="ot">&lt;-</span> <span class="fu">tune</span>(svm,high<span class="sc">~</span>.,<span class="at">data=</span>Auto, <span class="at">kernel=</span><span class="st">"radial"</span>,<span class="at">ranges=</span><span class="fu">list</span>(<span class="at">cost=</span><span class="fu">c</span>(<span class="fl">0.1</span>,<span class="dv">1</span>,<span class="dv">10</span>,<span class="dv">100</span>,<span class="dv">1000</span>),<span class="at">gamma=</span><span class="fu">c</span>(<span class="fl">0.5</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)))</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(auto_tune_radial)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Parameter tuning of 'svm':
+
+- sampling method: 10-fold cross validation 
+
+- best parameters:
+ cost gamma
+    1   0.5
+
+- best performance: 0.05015197 
+
+- Detailed performance results:
+    cost gamma      error  dispersion
+1  1e-01   0.5 0.08034679 0.016888749
+2  1e+00   0.5 0.05015197 0.021490457
+3  1e+01   0.5 0.05192803 0.020693861
+4  1e+02   0.5 0.05190241 0.020682680
+5  1e+03   0.5 0.05190241 0.020682680
+6  1e-01   1.0 0.29778763 0.037143511
+7  1e+00   1.0 0.09787485 0.016102436
+8  1e+01   1.0 0.09967585 0.015721409
+9  1e+02   1.0 0.09967585 0.015721409
+10 1e+03   1.0 0.09967585 0.015721409
+11 1e-01   2.0 0.42493331 0.043642327
+12 1e+00   2.0 0.20885987 0.011343016
+13 1e+01   2.0 0.20923784 0.011048978
+14 1e+02   2.0 0.20923784 0.011048978
+15 1e+03   2.0 0.20923784 0.011048978
+16 1e-01   3.0 0.43733581 0.042085800
+17 1e+00   3.0 0.23287331 0.009238892
+18 1e+01   3.0 0.23293218 0.009165893
+19 1e+02   3.0 0.23293218 0.009165893
+20 1e+03   3.0 0.23293218 0.009165893
+21 1e-01   4.0 0.44150006 0.040824381
+22 1e+00   4.0 0.23744335 0.007731394
+23 1e+01   4.0 0.23745903 0.007714556
+24 1e+02   4.0 0.23745903 0.007714556
+25 1e+03   4.0 0.23745903 0.007714556</code></pre>
+</div>
+</div>
+<p>Optimal Cost Value is 1</p>
+<p>Optimal Gamma Value is 0.5</p>
+<p>Cross Validation Error: 0.051</p>
+<p><strong>Tuned Polynomial Svm</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>auto_tune_poly <span class="ot">&lt;-</span> <span class="fu">tune</span>(svm,high<span class="sc">~</span>.,<span class="at">data=</span>Auto,<span class="at">kernel=</span><span class="st">"polynomial"</span>,<span class="at">ranges=</span><span class="fu">list</span>(<span class="at">cost=</span><span class="fu">c</span>(<span class="fl">0.1</span>,<span class="dv">1</span>,<span class="dv">10</span>,<span class="dv">100</span>,<span class="dv">1000</span>),<span class="at">gamma=</span><span class="fu">c</span>(<span class="fl">0.5</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),<span class="at">degree=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)))</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(auto_tune_poly)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Parameter tuning of 'svm':
+
+- sampling method: 10-fold cross validation 
+
+- best parameters:
+ cost gamma degree
+  0.1   0.5      3
+
+- best performance: 0.09718451 
+
+- Detailed performance results:
+    cost gamma degree      error dispersion
+1  1e-01   0.5      2 0.12944945 0.02279433
+2  1e+00   0.5      2 0.12445274 0.02477350
+3  1e+01   0.5      2 0.15093365 0.01710134
+4  1e+02   0.5      2 0.16260595 0.01488114
+5  1e+03   0.5      2 0.16260595 0.01488114
+6  1e-01   1.0      2 0.12009739 0.02361922
+7  1e+00   1.0      2 0.13590085 0.02078812
+8  1e+01   1.0      2 0.16260595 0.01488114
+9  1e+02   1.0      2 0.16260595 0.01488114
+10 1e+03   1.0      2 0.16260595 0.01488114
+11 1e-01   2.0      2 0.12810976 0.02436339
+12 1e+00   2.0      2 0.15384974 0.01574844
+13 1e+01   2.0      2 0.16260595 0.01488114
+14 1e+02   2.0      2 0.16260595 0.01488114
+15 1e+03   2.0      2 0.16260595 0.01488114
+16 1e-01   3.0      2 0.13510479 0.02112198
+17 1e+00   3.0      2 0.16260943 0.01488408
+18 1e+01   3.0      2 0.16260943 0.01488408
+19 1e+02   3.0      2 0.16260943 0.01488408
+20 1e+03   3.0      2 0.16260943 0.01488408
+21 1e-01   4.0      2 0.14284539 0.01848847
+22 1e+00   4.0      2 0.16260595 0.01488114
+23 1e+01   4.0      2 0.16260595 0.01488114
+24 1e+02   4.0      2 0.16260595 0.01488114
+25 1e+03   4.0      2 0.16260595 0.01488114
+26 1e-01   0.5      3 0.09718451 0.02835662
+27 1e+00   0.5      3 0.12998892 0.04355520
+28 1e+01   0.5      3 0.15903015 0.04735260
+29 1e+02   0.5      3 0.15905585 0.04733557
+30 1e+03   0.5      3 0.15905585 0.04733557
+31 1e-01   1.0      3 0.12730425 0.04291076
+32 1e+00   1.0      3 0.15550466 0.04586998
+33 1e+01   1.0      3 0.15905585 0.04733557
+34 1e+02   1.0      3 0.15905585 0.04733557
+35 1e+03   1.0      3 0.15905585 0.04733557
+36 1e-01   2.0      3 0.15276273 0.04492723
+37 1e+00   2.0      3 0.15905585 0.04733557
+38 1e+01   2.0      3 0.15905585 0.04733557
+39 1e+02   2.0      3 0.15905585 0.04733557
+40 1e+03   2.0      3 0.15905585 0.04733557
+41 1e-01   3.0      3 0.15905134 0.04733299
+42 1e+00   3.0      3 0.15905134 0.04733299
+43 1e+01   3.0      3 0.15905134 0.04733299
+44 1e+02   3.0      3 0.15905134 0.04733299
+45 1e+03   3.0      3 0.15905134 0.04733299
+46 1e-01   4.0      3 0.15905585 0.04733557
+47 1e+00   4.0      3 0.15905585 0.04733557
+48 1e+01   4.0      3 0.15905585 0.04733557
+49 1e+02   4.0      3 0.15905585 0.04733557
+50 1e+03   4.0      3 0.15905585 0.04733557
+51 1e-01   0.5      4 0.27021361 0.16872913
+52 1e+00   0.5      4 0.40019261 0.33379672
+53 1e+01   0.5      4 0.44671434 0.39388902
+54 1e+02   0.5      4 0.44671434 0.39388902
+55 1e+03   0.5      4 0.44671434 0.39388902
+56 1e-01   1.0      4 0.40976870 0.33894997
+57 1e+00   1.0      4 0.44671434 0.39388902
+58 1e+01   1.0      4 0.44671434 0.39388902
+59 1e+02   1.0      4 0.44671434 0.39388902
+60 1e+03   1.0      4 0.44671434 0.39388902
+61 1e-01   2.0      4 0.44671434 0.39388902
+62 1e+00   2.0      4 0.44671434 0.39388902
+63 1e+01   2.0      4 0.44671434 0.39388902
+64 1e+02   2.0      4 0.44671434 0.39388902
+65 1e+03   2.0      4 0.44671434 0.39388902
+66 1e-01   3.0      4 0.44668786 0.39382820
+67 1e+00   3.0      4 0.44668786 0.39382820
+68 1e+01   3.0      4 0.44668786 0.39382820
+69 1e+02   3.0      4 0.44668786 0.39382820
+70 1e+03   3.0      4 0.44668786 0.39382820
+71 1e-01   4.0      4 0.44671434 0.39388902
+72 1e+00   4.0      4 0.44671434 0.39388902
+73 1e+01   4.0      4 0.44671434 0.39388902
+74 1e+02   4.0      4 0.44671434 0.39388902
+75 1e+03   4.0      4 0.44671434 0.39388902</code></pre>
+</div>
+</div>
+<p>Optimal Cost Value is 0.1</p>
+<p>Optimal Gamma Value is 0.5</p>
+<p>Optimal degree is 3</p>
+<p>Cross Validation Error: 0.097</p>
+<p>e.)</p>
+<p>It seems that the best performing SVM kernel was the radial kernel with a</p>
+<p>Cross Validation Error: 0.051</p>
+</section>
+<section id="question-5" class="level2">
+<h2 class="anchored" data-anchor-id="question-5">Question 5</h2>
+<p>a.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>trainOJ <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(OJ), <span class="dv">800</span>)</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>OJ_train <span class="ot">&lt;-</span> OJ[trainOJ, ]</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>OJ_test <span class="ot">&lt;-</span> OJ[<span class="sc">-</span>trainOJ, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>b.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>svm_linear_OJ <span class="ot">&lt;-</span> <span class="fu">svm</span>(Purchase <span class="sc">~</span> . , <span class="at">kernel =</span> <span class="st">"linear"</span>, <span class="at">data =</span> OJ_train, <span class="at">cost =</span> <span class="fl">0.01</span>)</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(svm_linear_OJ)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+svm(formula = Purchase ~ ., data = OJ_train, kernel = "linear", cost = 0.01)
+
+
+Parameters:
+   SVM-Type:  C-classification 
+ SVM-Kernel:  linear 
+       cost:  0.01 
+
+Number of Support Vectors:  435
+
+ ( 219 216 )
+
+
+Number of Classes:  2 
+
+Levels: 
+ CH MM</code></pre>
+</div>
+</div>
+<p>Training error: Linear</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Training Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_linear_OJ, OJ_train, OJ_train<span class="sc">$</span>Purchase), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Training Error Rate: 17.5 %</code></pre>
+</div>
+</div>
+<p>Testing error: Linear</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Test Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_linear_OJ, OJ_test, OJ_test<span class="sc">$</span>Purchase), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Test Error Rate: 17.77778 %</code></pre>
+</div>
+</div>
+<p>Tune: Linear</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>svm_tune_OJ <span class="ot">&lt;-</span> <span class="fu">tune</span>(svm, Purchase <span class="sc">~</span> . , <span class="at">data =</span> OJ, <span class="at">kernel =</span> <span class="st">"linear"</span>, </span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ranges =</span> <span class="fu">list</span>(<span class="at">cost =</span> <span class="fu">seq</span>(<span class="fl">0.01</span>, <span class="dv">10</span>, <span class="at">length =</span> <span class="dv">50</span>)))</span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(svm_tune_OJ)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Parameter tuning of 'svm':
+
+- sampling method: 10-fold cross validation 
+
+- best parameters:
+     cost
+ 1.233265
+
+- best performance: 0.1616822 
+
+- Detailed performance results:
+         cost     error dispersion
+1   0.0100000 0.1691589 0.04024604
+2   0.2138776 0.1672897 0.03801389
+3   0.4177551 0.1691589 0.03671522
+4   0.6216327 0.1672897 0.03618270
+5   0.8255102 0.1654206 0.03917066
+6   1.0293878 0.1626168 0.03945456
+7   1.2332653 0.1616822 0.03917066
+8   1.4371429 0.1672897 0.03671522
+9   1.6410204 0.1663551 0.03654300
+10  1.8448980 0.1654206 0.03580522
+11  2.0487755 0.1635514 0.03847068
+12  2.2526531 0.1644860 0.03870959
+13  2.4565306 0.1635514 0.03847068
+14  2.6604082 0.1644860 0.03870959
+15  2.8642857 0.1626168 0.03795001
+16  3.0681633 0.1626168 0.03994348
+17  3.2720408 0.1626168 0.03994348
+18  3.4759184 0.1626168 0.03994348
+19  3.6797959 0.1626168 0.03994348
+20  3.8836735 0.1635514 0.04067777
+21  4.0875510 0.1635514 0.04067777
+22  4.2914286 0.1654206 0.03917066
+23  4.4953061 0.1654206 0.03917066
+24  4.6991837 0.1654206 0.03917066
+25  4.9030612 0.1654206 0.03917066
+26  5.1069388 0.1654206 0.03917066
+27  5.3108163 0.1654206 0.03917066
+28  5.5146939 0.1654206 0.03917066
+29  5.7185714 0.1663551 0.03835699
+30  5.9224490 0.1663551 0.03835699
+31  6.1263265 0.1654206 0.03917066
+32  6.3302041 0.1654206 0.03917066
+33  6.5340816 0.1663551 0.03759029
+34  6.7379592 0.1672897 0.03671522
+35  6.9418367 0.1672897 0.03671522
+36  7.1457143 0.1672897 0.03671522
+37  7.3495918 0.1672897 0.03671522
+38  7.5534694 0.1672897 0.03671522
+39  7.7573469 0.1672897 0.03671522
+40  7.9612245 0.1672897 0.03671522
+41  8.1651020 0.1682243 0.03738318
+42  8.3689796 0.1682243 0.03606180
+43  8.5728571 0.1682243 0.03606180
+44  8.7767347 0.1682243 0.03606180
+45  8.9806122 0.1682243 0.03606180
+46  9.1844898 0.1682243 0.03606180
+47  9.3883673 0.1682243 0.03865942
+48  9.5922449 0.1682243 0.03865942
+49  9.7961224 0.1682243 0.03865942
+50 10.0000000 0.1682243 0.03865942</code></pre>
+</div>
+</div>
+<p>Tuned Training Error: Linear</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>svm_linear <span class="ot">&lt;-</span> <span class="fu">svm</span>(Purchase <span class="sc">~</span> . , <span class="at">kernel =</span> <span class="st">"linear"</span>, </span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> OJ_train, <span class="at">cost =</span> svm_tune_OJ<span class="sc">$</span>best.parameters<span class="sc">$</span>cost)</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Training Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_linear, OJ_train, OJ_train<span class="sc">$</span>Purchase), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Training Error Rate: 16.375 %</code></pre>
+</div>
+</div>
+<p>Tuned Testing Error: Linear</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Test Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_linear, OJ_test, OJ_test<span class="sc">$</span>Purchase), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Test Error Rate: 15.55556 %</code></pre>
+</div>
+</div>
+<p>c.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>svm_poly_OJ <span class="ot">&lt;-</span> <span class="fu">svm</span>(Purchase <span class="sc">~</span> . , <span class="at">data =</span> OJ_train, <span class="at">kernel =</span> <span class="st">"poly"</span>, <span class="at">degree =</span> <span class="dv">2</span>)</span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(svm_poly_OJ)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+svm(formula = Purchase ~ ., data = OJ_train, kernel = "poly", degree = 2)
+
+
+Parameters:
+   SVM-Type:  C-classification 
+ SVM-Kernel:  polynomial 
+       cost:  1 
+     degree:  2 
+     coef.0:  0 
+
+Number of Support Vectors:  447
+
+ ( 225 222 )
+
+
+Number of Classes:  2 
+
+Levels: 
+ CH MM</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Training Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_poly_OJ, OJ_train, OJ_train<span class="sc">$</span>Purchase), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Training Error Rate: 18.25 %</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Test Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_poly_OJ, OJ_test, OJ_test<span class="sc">$</span>Purchase), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Test Error Rate: 22.22222 %</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>svm_tune_poly_OJ <span class="ot">&lt;-</span> <span class="fu">tune</span>(svm, Purchase <span class="sc">~</span> . , <span class="at">data =</span> OJ_train, <span class="at">kernel =</span> <span class="st">"poly"</span>, </span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">degree =</span> <span class="dv">2</span>, <span class="at">ranges =</span> <span class="fu">list</span>(<span class="at">cost =</span> <span class="fu">seq</span>(<span class="fl">0.01</span>, <span class="dv">10</span>, <span class="at">length =</span> <span class="dv">100</span>)))</span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(svm_tune_poly_OJ)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Parameter tuning of 'svm':
+
+- sampling method: 10-fold cross validation 
+
+- best parameters:
+     cost
+ 2.431818
+
+- best performance: 0.17125 
+
+- Detailed performance results:
+          cost   error dispersion
+1    0.0100000 0.39125 0.04210189
+2    0.1109091 0.31750 0.04937104
+3    0.2118182 0.22375 0.04016027
+4    0.3127273 0.20000 0.04208127
+5    0.4136364 0.20125 0.04185375
+6    0.5145455 0.20500 0.04338138
+7    0.6154545 0.20500 0.03961621
+8    0.7163636 0.20250 0.04031129
+9    0.8172727 0.20250 0.04322101
+10   0.9181818 0.20250 0.04479893
+11   1.0190909 0.20125 0.03928617
+12   1.1200000 0.20125 0.04016027
+13   1.2209091 0.19625 0.04411554
+14   1.3218182 0.19250 0.04495368
+15   1.4227273 0.19125 0.04411554
+16   1.5236364 0.19000 0.04322101
+17   1.6245455 0.18875 0.04308019
+18   1.7254545 0.18500 0.04199868
+19   1.8263636 0.18375 0.04411554
+20   1.9272727 0.18125 0.04177070
+21   2.0281818 0.18125 0.04177070
+22   2.1290909 0.17875 0.04210189
+23   2.2300000 0.17375 0.03793727
+24   2.3309091 0.17375 0.03747684
+25   2.4318182 0.17125 0.03729108
+26   2.5327273 0.17375 0.03884174
+27   2.6336364 0.17375 0.03884174
+28   2.7345455 0.17500 0.03818813
+29   2.8354545 0.17500 0.03818813
+30   2.9363636 0.17625 0.03793727
+31   3.0372727 0.17625 0.03793727
+32   3.1381818 0.17750 0.03670453
+33   3.2390909 0.18000 0.03545341
+34   3.3400000 0.18000 0.03545341
+35   3.4409091 0.17875 0.03586723
+36   3.5418182 0.17875 0.03586723
+37   3.6427273 0.17875 0.03537988
+38   3.7436364 0.17875 0.03537988
+39   3.8445455 0.18125 0.03498512
+40   3.9454545 0.18250 0.03395258
+41   4.0463636 0.18250 0.03395258
+42   4.1472727 0.18375 0.03438447
+43   4.2481818 0.18500 0.03425801
+44   4.3490909 0.18500 0.03425801
+45   4.4500000 0.18500 0.03425801
+46   4.5509091 0.18375 0.03387579
+47   4.6518182 0.18375 0.03387579
+48   4.7527273 0.18250 0.03496029
+49   4.8536364 0.18250 0.03496029
+50   4.9545455 0.18250 0.03496029
+51   5.0554545 0.18250 0.03496029
+52   5.1563636 0.18250 0.03496029
+53   5.2572727 0.18375 0.03537988
+54   5.3581818 0.18625 0.03143004
+55   5.4590909 0.18625 0.03143004
+56   5.5600000 0.18375 0.03064696
+57   5.6609091 0.18375 0.03064696
+58   5.7618182 0.18500 0.03162278
+59   5.8627273 0.18625 0.03304563
+60   5.9636364 0.18625 0.03304563
+61   6.0645455 0.18500 0.03162278
+62   6.1654545 0.18500 0.03162278
+63   6.2663636 0.18500 0.03162278
+64   6.3672727 0.18500 0.03162278
+65   6.4681818 0.18500 0.03162278
+66   6.5690909 0.18500 0.03162278
+67   6.6700000 0.18625 0.03356689
+68   6.7709091 0.18500 0.03162278
+69   6.8718182 0.18500 0.03162278
+70   6.9727273 0.18500 0.03162278
+71   7.0736364 0.18625 0.03251602
+72   7.1745455 0.18500 0.03525699
+73   7.2754545 0.18375 0.03387579
+74   7.3763636 0.18375 0.03387579
+75   7.4772727 0.18375 0.03387579
+76   7.5781818 0.18250 0.03291403
+77   7.6790909 0.18250 0.03291403
+78   7.7800000 0.18250 0.03291403
+79   7.8809091 0.18125 0.03448530
+80   7.9818182 0.18125 0.03448530
+81   8.0827273 0.18125 0.03240906
+82   8.1836364 0.18000 0.03129164
+83   8.2845455 0.18125 0.02841288
+84   8.3854545 0.18250 0.02898755
+85   8.4863636 0.18250 0.02898755
+86   8.5872727 0.18000 0.02838231
+87   8.6881818 0.17875 0.02766993
+88   8.7890909 0.17875 0.02766993
+89   8.8900000 0.17875 0.02766993
+90   8.9909091 0.17875 0.02766993
+91   9.0918182 0.17750 0.02751262
+92   9.1927273 0.17750 0.02751262
+93   9.2936364 0.17750 0.02751262
+94   9.3945455 0.17750 0.02751262
+95   9.4954545 0.17750 0.02751262
+96   9.5963636 0.17875 0.02766993
+97   9.6972727 0.17875 0.02766993
+98   9.7981818 0.17875 0.02766993
+99   9.8990909 0.17875 0.02766993
+100 10.0000000 0.18125 0.02779513</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>svm_poly_OJ <span class="ot">&lt;-</span> <span class="fu">svm</span>(Purchase <span class="sc">~</span> . , <span class="at">data =</span> OJ_train, <span class="at">kernel =</span> <span class="st">"poly"</span>, </span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">degree =</span> <span class="dv">2</span>, <span class="at">cost =</span> svm_tune_poly_OJ<span class="sc">$</span>best.parameters<span class="sc">$</span>cost)</span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Training Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_poly_OJ, OJ_train, OJ_train<span class="sc">$</span>Purchase), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Training Error Rate: 15.625 %</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Test Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_poly_OJ, OJ_test, OJ_test<span class="sc">$</span>Purchase), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Test Error Rate: 20.74074 %</code></pre>
+</div>
+</div>
+<p>d.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>svm_radial_OJ <span class="ot">&lt;-</span> <span class="fu">svm</span>(Purchase <span class="sc">~</span> . , <span class="at">data =</span> OJ_train, <span class="at">kernel =</span> <span class="st">"radial"</span>)</span>
+<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(svm_radial_OJ)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+svm(formula = Purchase ~ ., data = OJ_train, kernel = "radial")
+
+
+Parameters:
+   SVM-Type:  C-classification 
+ SVM-Kernel:  radial 
+       cost:  1 
+
+Number of Support Vectors:  373
+
+ ( 188 185 )
+
+
+Number of Classes:  2 
+
+Levels: 
+ CH MM</code></pre>
+</div>
+</div>
+<p>Train</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Training Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_radial_OJ, OJ_train, OJ_train<span class="sc">$</span>Purchase), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Training Error Rate: 15.125 %</code></pre>
+</div>
+</div>
+<p>Test</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Test Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_radial_OJ, OJ_test, OJ_test<span class="sc">$</span>Purchase), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Test Error Rate: 18.51852 %</code></pre>
+</div>
+</div>
+<p>Tune</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a>svm_tune_OJ_radial <span class="ot">&lt;-</span> <span class="fu">tune</span>(svm, Purchase <span class="sc">~</span> . , <span class="at">data =</span> OJ_train, <span class="at">kernel =</span> <span class="st">"radial"</span>,</span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ranges =</span> <span class="fu">list</span>(<span class="at">cost =</span> <span class="fu">seq</span>(<span class="fl">0.01</span>, <span class="dv">10</span>, <span class="at">length =</span> <span class="dv">100</span>)))</span>
+<span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(svm_tune_OJ_radial)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Parameter tuning of 'svm':
+
+- sampling method: 10-fold cross validation 
+
+- best parameters:
+      cost
+ 0.5145455
+
+- best performance: 0.16625 
+
+- Detailed performance results:
+          cost   error dispersion
+1    0.0100000 0.39375 0.04007372
+2    0.1109091 0.18625 0.02853482
+3    0.2118182 0.18250 0.03238227
+4    0.3127273 0.17875 0.03230175
+5    0.4136364 0.17625 0.02531057
+6    0.5145455 0.16625 0.02433134
+7    0.6154545 0.16875 0.02301117
+8    0.7163636 0.16750 0.02776389
+9    0.8172727 0.17000 0.02513851
+10   0.9181818 0.16750 0.02220485
+11   1.0190909 0.17000 0.02058182
+12   1.1200000 0.17250 0.02188988
+13   1.2209091 0.17250 0.02108185
+14   1.3218182 0.17250 0.02266912
+15   1.4227273 0.17375 0.02389938
+16   1.5236364 0.17625 0.02161050
+17   1.6245455 0.17625 0.02161050
+18   1.7254545 0.17750 0.02188988
+19   1.8263636 0.17625 0.02079162
+20   1.9272727 0.17625 0.02079162
+21   2.0281818 0.17750 0.02188988
+22   2.1290909 0.17875 0.02128673
+23   2.2300000 0.17875 0.02128673
+24   2.3309091 0.17750 0.02266912
+25   2.4318182 0.17750 0.02266912
+26   2.5327273 0.17625 0.02239947
+27   2.6336364 0.17625 0.02239947
+28   2.7345455 0.17625 0.02239947
+29   2.8354545 0.17625 0.02239947
+30   2.9363636 0.17625 0.02239947
+31   3.0372727 0.17625 0.02239947
+32   3.1381818 0.17750 0.02266912
+33   3.2390909 0.17750 0.02266912
+34   3.3400000 0.17750 0.02266912
+35   3.4409091 0.17875 0.02360703
+36   3.5418182 0.17875 0.02360703
+37   3.6427273 0.17875 0.02360703
+38   3.7436364 0.17875 0.02360703
+39   3.8445455 0.18000 0.02371708
+40   3.9454545 0.18000 0.02371708
+41   4.0463636 0.18125 0.02301117
+42   4.1472727 0.18125 0.02301117
+43   4.2481818 0.18125 0.02301117
+44   4.3490909 0.18125 0.02301117
+45   4.4500000 0.18125 0.02144923
+46   4.5509091 0.18125 0.02144923
+47   4.6518182 0.18125 0.02144923
+48   4.7527273 0.18125 0.02144923
+49   4.8536364 0.18125 0.02144923
+50   4.9545455 0.18000 0.02220485
+51   5.0554545 0.18000 0.02220485
+52   5.1563636 0.18000 0.02220485
+53   5.2572727 0.18000 0.02220485
+54   5.3581818 0.18000 0.02220485
+55   5.4590909 0.18000 0.02220485
+56   5.5600000 0.18000 0.02220485
+57   5.6609091 0.18000 0.02220485
+58   5.7618182 0.18000 0.02220485
+59   5.8627273 0.18000 0.02220485
+60   5.9636364 0.18000 0.02220485
+61   6.0645455 0.18000 0.02220485
+62   6.1654545 0.18000 0.02220485
+63   6.2663636 0.18125 0.02301117
+64   6.3672727 0.18125 0.02301117
+65   6.4681818 0.18125 0.02301117
+66   6.5690909 0.18125 0.02301117
+67   6.6700000 0.18125 0.02301117
+68   6.7709091 0.18125 0.02301117
+69   6.8718182 0.18125 0.02301117
+70   6.9727273 0.18250 0.02371708
+71   7.0736364 0.18375 0.02503470
+72   7.1745455 0.18250 0.02443813
+73   7.2754545 0.18250 0.02443813
+74   7.3763636 0.18375 0.02638523
+75   7.4772727 0.18375 0.02638523
+76   7.5781818 0.18375 0.02638523
+77   7.6790909 0.18375 0.02638523
+78   7.7800000 0.18375 0.02638523
+79   7.8809091 0.18375 0.02638523
+80   7.9818182 0.18375 0.02638523
+81   8.0827273 0.18250 0.02648375
+82   8.1836364 0.18125 0.02447363
+83   8.2845455 0.18000 0.02443813
+84   8.3854545 0.18000 0.02443813
+85   8.4863636 0.18000 0.02443813
+86   8.5872727 0.18000 0.02443813
+87   8.6881818 0.18000 0.02443813
+88   8.7890909 0.18375 0.02703521
+89   8.8900000 0.18375 0.02703521
+90   8.9909091 0.18375 0.02703521
+91   9.0918182 0.18375 0.02703521
+92   9.1927273 0.18375 0.02703521
+93   9.2936364 0.18625 0.02853482
+94   9.3945455 0.18625 0.02853482
+95   9.4954545 0.18625 0.02853482
+96   9.5963636 0.18625 0.02853482
+97   9.6972727 0.18625 0.02853482
+98   9.7981818 0.18625 0.02853482
+99   9.8990909 0.18625 0.02853482
+100 10.0000000 0.18625 0.02853482</code></pre>
+</div>
+</div>
+<p>Train Tune Error</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>svm_radial_OJ <span class="ot">&lt;-</span> <span class="fu">svm</span>(Purchase <span class="sc">~</span> . , <span class="at">data =</span> OJ_train, <span class="at">kernel =</span> <span class="st">"radial"</span>,</span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">cost =</span> svm_tune_OJ_radial<span class="sc">$</span>best.parameters<span class="sc">$</span>cost)</span>
+<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-5"><a href="#cb90-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Training Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_radial_OJ, OJ_train, OJ_train<span class="sc">$</span>Purchase), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Training Error Rate: 14.875 %</code></pre>
+</div>
+</div>
+<p>Test Tune Error</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Test Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_radial_OJ, OJ_test, OJ_test<span class="sc">$</span>Purchase), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Test Error Rate: 17.77778 %</code></pre>
+</div>
+</div>
+<p>e.)</p>
+<p>The best performing SVM Kernel was: The tuned radial kernel</p>
+<p>Training Error: 14.875 %</p>
+<p>However the best performing SVM Kernel for testing data was the tuned linear kernel</p>
+<p>Test Error: 15.55556 %</p>
+</section>
+<section id="question-6" class="level2">
+<h2 class="anchored" data-anchor-id="question-6">Question 6</h2>
+<p>a.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>trainIrisIndex <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(iris), <span class="fl">0.8</span> <span class="sc">*</span> <span class="fu">nrow</span>(iris))</span>
+<span id="cb94-4"><a href="#cb94-4" aria-hidden="true" tabindex="-1"></a>train_iris <span class="ot">&lt;-</span> iris[trainIrisIndex, ]</span>
+<span id="cb94-5"><a href="#cb94-5" aria-hidden="true" tabindex="-1"></a>test_iris <span class="ot">&lt;-</span> iris[<span class="sc">-</span>trainIrisIndex, ]</span>
+<span id="cb94-6"><a href="#cb94-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-7"><a href="#cb94-7" aria-hidden="true" tabindex="-1"></a><span class="co">#y is Species</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>b.) &amp; c.)</p>
+<p>i.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>svm_tune_iris_linear <span class="ot">&lt;-</span> <span class="fu">tune</span>(svm, Species <span class="sc">~</span> . , <span class="at">data =</span> train_iris, <span class="at">kernel =</span> <span class="st">"linear"</span>, </span>
+<span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ranges =</span> <span class="fu">list</span>(<span class="at">cost =</span> <span class="fu">seq</span>(<span class="fl">0.01</span>, <span class="dv">10</span>, <span class="at">length =</span> <span class="dv">50</span>)))</span>
+<span id="cb95-5"><a href="#cb95-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(svm_tune_iris_linear)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Parameter tuning of 'svm':
+
+- sampling method: 10-fold cross validation 
+
+- best parameters:
+      cost
+ 0.6216327
+
+- best performance: 0.025 
+
+- Detailed performance results:
+         cost      error dispersion
+1   0.0100000 0.20000000 0.16292087
+2   0.2138776 0.03333333 0.04303315
+3   0.4177551 0.03333333 0.04303315
+4   0.6216327 0.02500000 0.04025382
+5   0.8255102 0.02500000 0.04025382
+6   1.0293878 0.03333333 0.04303315
+7   1.2332653 0.04166667 0.04392052
+8   1.4371429 0.04166667 0.04392052
+9   1.6410204 0.05000000 0.05826716
+10  1.8448980 0.04166667 0.05892557
+11  2.0487755 0.04166667 0.05892557
+12  2.2526531 0.04166667 0.05892557
+13  2.4565306 0.05000000 0.05826716
+14  2.6604082 0.05000000 0.05826716
+15  2.8642857 0.05000000 0.05826716
+16  3.0681633 0.05000000 0.05826716
+17  3.2720408 0.04166667 0.05892557
+18  3.4759184 0.04166667 0.05892557
+19  3.6797959 0.04166667 0.05892557
+20  3.8836735 0.04166667 0.05892557
+21  4.0875510 0.04166667 0.05892557
+22  4.2914286 0.04166667 0.05892557
+23  4.4953061 0.04166667 0.05892557
+24  4.6991837 0.04166667 0.05892557
+25  4.9030612 0.04166667 0.05892557
+26  5.1069388 0.04166667 0.05892557
+27  5.3108163 0.04166667 0.05892557
+28  5.5146939 0.04166667 0.05892557
+29  5.7185714 0.04166667 0.05892557
+30  5.9224490 0.04166667 0.05892557
+31  6.1263265 0.04166667 0.05892557
+32  6.3302041 0.04166667 0.05892557
+33  6.5340816 0.04166667 0.05892557
+34  6.7379592 0.04166667 0.05892557
+35  6.9418367 0.04166667 0.05892557
+36  7.1457143 0.04166667 0.05892557
+37  7.3495918 0.04166667 0.05892557
+38  7.5534694 0.04166667 0.05892557
+39  7.7573469 0.04166667 0.05892557
+40  7.9612245 0.04166667 0.05892557
+41  8.1651020 0.04166667 0.05892557
+42  8.3689796 0.04166667 0.05892557
+43  8.5728571 0.04166667 0.05892557
+44  8.7767347 0.04166667 0.05892557
+45  8.9806122 0.04166667 0.05892557
+46  9.1844898 0.04166667 0.05892557
+47  9.3883673 0.04166667 0.05892557
+48  9.5922449 0.04166667 0.05892557
+49  9.7961224 0.04166667 0.05892557
+50 10.0000000 0.04166667 0.05892557</code></pre>
+</div>
+</div>
+<p>Train Error</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>svm_linear_iris <span class="ot">&lt;-</span> <span class="fu">svm</span>(Species <span class="sc">~</span> . , <span class="at">kernel =</span> <span class="st">"linear"</span>, </span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> train_iris, <span class="at">cost =</span> svm_tune_iris_linear<span class="sc">$</span>best.parameters<span class="sc">$</span>cost)</span>
+<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-5"><a href="#cb97-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Training Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_linear_iris, train_iris, train_iris<span class="sc">$</span>Species), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Training Error Rate: 1.666667 %</code></pre>
+</div>
+</div>
+<p>Test Error</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Test Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_linear_iris, test_iris, test_iris<span class="sc">$</span>Species), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Test Error Rate: 0 %</code></pre>
+</div>
+</div>
+<p>ii.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a>svm_tune_poly_iris <span class="ot">&lt;-</span> <span class="fu">tune</span>(svm, Species <span class="sc">~</span> . , <span class="at">data =</span> train_iris, <span class="at">kernel =</span> <span class="st">"poly"</span>, </span>
+<span id="cb101-4"><a href="#cb101-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">degree =</span> <span class="dv">2</span>, <span class="at">ranges =</span> <span class="fu">list</span>(<span class="at">cost =</span> <span class="fu">seq</span>(<span class="fl">0.01</span>, <span class="dv">10</span>, <span class="at">length =</span> <span class="dv">100</span>)))</span>
+<span id="cb101-5"><a href="#cb101-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(svm_tune_poly_iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Parameter tuning of 'svm':
+
+- sampling method: 10-fold cross validation 
+
+- best parameters:
+     cost
+ 1.523636
+
+- best performance: 0.08333333 
+
+- Detailed performance results:
+          cost      error dispersion
+1    0.0100000 0.69166667 0.14724843
+2    0.1109091 0.24166667 0.12076147
+3    0.2118182 0.17500000 0.09976825
+4    0.3127273 0.15000000 0.10243938
+5    0.4136364 0.13333333 0.10540926
+6    0.5145455 0.12500000 0.10577463
+7    0.6154545 0.11666667 0.11249143
+8    0.7163636 0.10833333 0.11145779
+9    0.8172727 0.10000000 0.10243938
+10   0.9181818 0.10000000 0.10243938
+11   1.0190909 0.10000000 0.10243938
+12   1.1200000 0.10000000 0.10243938
+13   1.2209091 0.10000000 0.10243938
+14   1.3218182 0.10000000 0.10243938
+15   1.4227273 0.09166667 0.08286908
+16   1.5236364 0.08333333 0.07856742
+17   1.6245455 0.08333333 0.07856742
+18   1.7254545 0.09166667 0.07296625
+19   1.8263636 0.09166667 0.07296625
+20   1.9272727 0.10000000 0.09460770
+21   2.0281818 0.10000000 0.07657805
+22   2.1290909 0.09166667 0.06148873
+23   2.2300000 0.09166667 0.06148873
+24   2.3309091 0.09166667 0.06148873
+25   2.4318182 0.09166667 0.06148873
+26   2.5327273 0.09166667 0.06148873
+27   2.6336364 0.09166667 0.06148873
+28   2.7345455 0.10833333 0.09662515
+29   2.8354545 0.11666667 0.11915339
+30   2.9363636 0.11666667 0.11915339
+31   3.0372727 0.11666667 0.11915339
+32   3.1381818 0.11666667 0.11915339
+33   3.2390909 0.11666667 0.11915339
+34   3.3400000 0.11666667 0.11915339
+35   3.4409091 0.11666667 0.11915339
+36   3.5418182 0.11666667 0.11915339
+37   3.6427273 0.11666667 0.11915339
+38   3.7436364 0.11666667 0.11915339
+39   3.8445455 0.12500000 0.11283387
+40   3.9454545 0.12500000 0.11283387
+41   4.0463636 0.12500000 0.11283387
+42   4.1472727 0.12500000 0.11283387
+43   4.2481818 0.12500000 0.11283387
+44   4.3490909 0.11666667 0.08958064
+45   4.4500000 0.11666667 0.08958064
+46   4.5509091 0.12500000 0.11283387
+47   4.6518182 0.12500000 0.11283387
+48   4.7527273 0.12500000 0.11283387
+49   4.8536364 0.13333333 0.11915339
+50   4.9545455 0.13333333 0.11915339
+51   5.0554545 0.13333333 0.11915339
+52   5.1563636 0.13333333 0.11915339
+53   5.2572727 0.13333333 0.11915339
+54   5.3581818 0.13333333 0.11249143
+55   5.4590909 0.13333333 0.11249143
+56   5.5600000 0.13333333 0.11249143
+57   5.6609091 0.13333333 0.11249143
+58   5.7618182 0.13333333 0.11249143
+59   5.8627273 0.13333333 0.11249143
+60   5.9636364 0.13333333 0.11249143
+61   6.0645455 0.13333333 0.11249143
+62   6.1654545 0.13333333 0.11249143
+63   6.2663636 0.13333333 0.11249143
+64   6.3672727 0.13333333 0.11249143
+65   6.4681818 0.13333333 0.11249143
+66   6.5690909 0.13333333 0.11249143
+67   6.6700000 0.13333333 0.11249143
+68   6.7709091 0.13333333 0.11249143
+69   6.8718182 0.13333333 0.11249143
+70   6.9727273 0.13333333 0.11249143
+71   7.0736364 0.13333333 0.11249143
+72   7.1745455 0.14166667 0.11817804
+73   7.2754545 0.14166667 0.11817804
+74   7.3763636 0.14166667 0.11817804
+75   7.4772727 0.14166667 0.11817804
+76   7.5781818 0.14166667 0.11817804
+77   7.6790909 0.14166667 0.11817804
+78   7.7800000 0.14166667 0.11817804
+79   7.8809091 0.14166667 0.11817804
+80   7.9818182 0.14166667 0.11817804
+81   8.0827273 0.14166667 0.11817804
+82   8.1836364 0.14166667 0.11817804
+83   8.2845455 0.14166667 0.11817804
+84   8.3854545 0.14166667 0.11817804
+85   8.4863636 0.14166667 0.11817804
+86   8.5872727 0.13333333 0.11915339
+87   8.6881818 0.13333333 0.11915339
+88   8.7890909 0.13333333 0.11915339
+89   8.8900000 0.13333333 0.11915339
+90   8.9909091 0.13333333 0.11915339
+91   9.0918182 0.13333333 0.11915339
+92   9.1927273 0.13333333 0.11915339
+93   9.2936364 0.13333333 0.11915339
+94   9.3945455 0.13333333 0.11915339
+95   9.4954545 0.13333333 0.11915339
+96   9.5963636 0.13333333 0.11915339
+97   9.6972727 0.13333333 0.11915339
+98   9.7981818 0.13333333 0.11915339
+99   9.8990909 0.13333333 0.11915339
+100 10.0000000 0.13333333 0.11915339</code></pre>
+</div>
+</div>
+<p>Train Error</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>svm_poly_iris <span class="ot">&lt;-</span> <span class="fu">svm</span>(Species <span class="sc">~</span> . , <span class="at">data =</span> train_iris, <span class="at">kernel =</span> <span class="st">"poly"</span>, </span>
+<span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">degree =</span> <span class="dv">2</span>, <span class="at">cost =</span> svm_tune_poly_iris<span class="sc">$</span>best.parameters<span class="sc">$</span>cost)</span>
+<span id="cb103-4"><a href="#cb103-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb103-5"><a href="#cb103-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Training Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_poly_iris, train_iris, train_iris<span class="sc">$</span>Species), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Training Error Rate: 8.333333 %</code></pre>
+</div>
+</div>
+<p>Test Error</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Test Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_poly_iris, test_iris, test_iris<span class="sc">$</span>Species), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Test Error Rate: 13.33333 %</code></pre>
+</div>
+</div>
+<p>iii.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-3"><a href="#cb107-3" aria-hidden="true" tabindex="-1"></a>svm_tune_iris_radial <span class="ot">&lt;-</span> <span class="fu">tune</span>(svm, Species <span class="sc">~</span> . , <span class="at">data =</span> train_iris, <span class="at">kernel =</span> <span class="st">"radial"</span>,</span>
+<span id="cb107-4"><a href="#cb107-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ranges =</span> <span class="fu">list</span>(<span class="at">cost =</span> <span class="fu">seq</span>(<span class="fl">0.01</span>, <span class="dv">10</span>, <span class="at">length =</span> <span class="dv">100</span>)))</span>
+<span id="cb107-5"><a href="#cb107-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(svm_tune_iris_radial)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Parameter tuning of 'svm':
+
+- sampling method: 10-fold cross validation 
+
+- best parameters:
+     cost
+ 1.019091
+
+- best performance: 0.04166667 
+
+- Detailed performance results:
+          cost      error dispersion
+1    0.0100000 0.69166667 0.14724843
+2    0.1109091 0.10000000 0.06573422
+3    0.2118182 0.05000000 0.05826716
+4    0.3127273 0.05000000 0.05826716
+5    0.4136364 0.05000000 0.05826716
+6    0.5145455 0.05833333 0.05624571
+7    0.6154545 0.05000000 0.04303315
+8    0.7163636 0.05000000 0.04303315
+9    0.8172727 0.05000000 0.04303315
+10   0.9181818 0.05000000 0.05826716
+11   1.0190909 0.04166667 0.04392052
+12   1.1200000 0.05000000 0.05826716
+13   1.2209091 0.05000000 0.05826716
+14   1.3218182 0.05000000 0.05826716
+15   1.4227273 0.05000000 0.05826716
+16   1.5236364 0.05000000 0.05826716
+17   1.6245455 0.05000000 0.05826716
+18   1.7254545 0.05000000 0.05826716
+19   1.8263636 0.05833333 0.05624571
+20   1.9272727 0.05833333 0.05624571
+21   2.0281818 0.05833333 0.05624571
+22   2.1290909 0.05833333 0.05624571
+23   2.2300000 0.05833333 0.05624571
+24   2.3309091 0.05833333 0.05624571
+25   2.4318182 0.05833333 0.05624571
+26   2.5327273 0.05833333 0.05624571
+27   2.6336364 0.05833333 0.05624571
+28   2.7345455 0.05833333 0.05624571
+29   2.8354545 0.05833333 0.05624571
+30   2.9363636 0.05833333 0.05624571
+31   3.0372727 0.05833333 0.05624571
+32   3.1381818 0.05833333 0.05624571
+33   3.2390909 0.05833333 0.05624571
+34   3.3400000 0.05833333 0.05624571
+35   3.4409091 0.05833333 0.05624571
+36   3.5418182 0.05833333 0.05624571
+37   3.6427273 0.05833333 0.05624571
+38   3.7436364 0.06666667 0.06573422
+39   3.8445455 0.06666667 0.06573422
+40   3.9454545 0.06666667 0.06573422
+41   4.0463636 0.06666667 0.06573422
+42   4.1472727 0.06666667 0.06573422
+43   4.2481818 0.06666667 0.06573422
+44   4.3490909 0.06666667 0.06573422
+45   4.4500000 0.06666667 0.06573422
+46   4.5509091 0.06666667 0.06573422
+47   4.6518182 0.06666667 0.06573422
+48   4.7527273 0.06666667 0.06573422
+49   4.8536364 0.06666667 0.06573422
+50   4.9545455 0.05833333 0.06860605
+51   5.0554545 0.05833333 0.06860605
+52   5.1563636 0.05833333 0.06860605
+53   5.2572727 0.05833333 0.06860605
+54   5.3581818 0.05833333 0.06860605
+55   5.4590909 0.05833333 0.06860605
+56   5.5600000 0.05833333 0.06860605
+57   5.6609091 0.05833333 0.06860605
+58   5.7618182 0.05833333 0.06860605
+59   5.8627273 0.05833333 0.06860605
+60   5.9636364 0.05833333 0.06860605
+61   6.0645455 0.05833333 0.06860605
+62   6.1654545 0.05833333 0.06860605
+63   6.2663636 0.05833333 0.06860605
+64   6.3672727 0.05833333 0.06860605
+65   6.4681818 0.05833333 0.06860605
+66   6.5690909 0.05833333 0.06860605
+67   6.6700000 0.05833333 0.06860605
+68   6.7709091 0.05833333 0.06860605
+69   6.8718182 0.05833333 0.06860605
+70   6.9727273 0.05833333 0.06860605
+71   7.0736364 0.05833333 0.06860605
+72   7.1745455 0.05833333 0.06860605
+73   7.2754545 0.05833333 0.06860605
+74   7.3763636 0.05833333 0.06860605
+75   7.4772727 0.05833333 0.06860605
+76   7.5781818 0.05833333 0.06860605
+77   7.6790909 0.05833333 0.06860605
+78   7.7800000 0.05833333 0.06860605
+79   7.8809091 0.05833333 0.06860605
+80   7.9818182 0.05833333 0.06860605
+81   8.0827273 0.05833333 0.06860605
+82   8.1836364 0.05833333 0.06860605
+83   8.2845455 0.05833333 0.06860605
+84   8.3854545 0.05833333 0.06860605
+85   8.4863636 0.05833333 0.06860605
+86   8.5872727 0.05833333 0.06860605
+87   8.6881818 0.05833333 0.06860605
+88   8.7890909 0.05833333 0.06860605
+89   8.8900000 0.05833333 0.06860605
+90   8.9909091 0.05833333 0.06860605
+91   9.0918182 0.05833333 0.06860605
+92   9.1927273 0.05833333 0.06860605
+93   9.2936364 0.05833333 0.06860605
+94   9.3945455 0.05833333 0.06860605
+95   9.4954545 0.05833333 0.06860605
+96   9.5963636 0.05833333 0.06860605
+97   9.6972727 0.06666667 0.06573422
+98   9.7981818 0.06666667 0.06573422
+99   9.8990909 0.06666667 0.06573422
+100 10.0000000 0.06666667 0.06573422</code></pre>
+</div>
+</div>
+<p>Train Error</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a>svm_radial_iris <span class="ot">&lt;-</span> <span class="fu">svm</span>(Species <span class="sc">~</span> . , <span class="at">data =</span> train_iris, <span class="at">kernel =</span> <span class="st">"radial"</span>,</span>
+<span id="cb109-3"><a href="#cb109-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">cost =</span> svm_tune_iris_radial<span class="sc">$</span>best.parameters<span class="sc">$</span>cost)</span>
+<span id="cb109-4"><a href="#cb109-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-5"><a href="#cb109-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Training Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_radial_iris, train_iris, train_iris<span class="sc">$</span>Species), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Training Error Rate: 3.333333 %</code></pre>
+</div>
+</div>
+<p>Test Error</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Test Error Rate:"</span>, <span class="dv">100</span> <span class="sc">*</span> <span class="fu">calc_error_rate</span>(svm_radial_iris, test_iris, test_iris<span class="sc">$</span>Species), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Test Error Rate: 3.333333 %</code></pre>
+</div>
+</div>
+<p>It seems that the linear SVM model has the best Testing and Training error at 1.666667 % and 0% respectively.</p>
+<p>d.)</p>
+<p>N/A</p>
+</section>
+<section id="question-7" class="level2">
+<h2 class="anchored" data-anchor-id="question-7">Question 7</h2>
+<p>a.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co">#this is simply so we can use the pipe command for feasability </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:MASS':
+
+    select</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Boston)</span>
+<span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Boston)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      crim                zn             indus            chas        
+ Min.   : 0.00632   Min.   :  0.00   Min.   : 0.46   Min.   :0.00000  
+ 1st Qu.: 0.08205   1st Qu.:  0.00   1st Qu.: 5.19   1st Qu.:0.00000  
+ Median : 0.25651   Median :  0.00   Median : 9.69   Median :0.00000  
+ Mean   : 3.61352   Mean   : 11.36   Mean   :11.14   Mean   :0.06917  
+ 3rd Qu.: 3.67708   3rd Qu.: 12.50   3rd Qu.:18.10   3rd Qu.:0.00000  
+ Max.   :88.97620   Max.   :100.00   Max.   :27.74   Max.   :1.00000  
+      nox               rm             age              dis        
+ Min.   :0.3850   Min.   :3.561   Min.   :  2.90   Min.   : 1.130  
+ 1st Qu.:0.4490   1st Qu.:5.886   1st Qu.: 45.02   1st Qu.: 2.100  
+ Median :0.5380   Median :6.208   Median : 77.50   Median : 3.207  
+ Mean   :0.5547   Mean   :6.285   Mean   : 68.57   Mean   : 3.795  
+ 3rd Qu.:0.6240   3rd Qu.:6.623   3rd Qu.: 94.08   3rd Qu.: 5.188  
+ Max.   :0.8710   Max.   :8.780   Max.   :100.00   Max.   :12.127  
+      rad              tax           ptratio          black       
+ Min.   : 1.000   Min.   :187.0   Min.   :12.60   Min.   :  0.32  
+ 1st Qu.: 4.000   1st Qu.:279.0   1st Qu.:17.40   1st Qu.:375.38  
+ Median : 5.000   Median :330.0   Median :19.05   Median :391.44  
+ Mean   : 9.549   Mean   :408.2   Mean   :18.46   Mean   :356.67  
+ 3rd Qu.:24.000   3rd Qu.:666.0   3rd Qu.:20.20   3rd Qu.:396.23  
+ Max.   :24.000   Max.   :711.0   Max.   :22.00   Max.   :396.90  
+     lstat            medv      
+ Min.   : 1.73   Min.   : 5.00  
+ 1st Qu.: 6.95   1st Qu.:17.02  
+ Median :11.36   Median :21.20  
+ Mean   :12.65   Mean   :22.53  
+ 3rd Qu.:16.95   3rd Qu.:25.00  
+ Max.   :37.97   Max.   :50.00  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="co">#We used the pipe opperator here, to rename the data set and also remove the chas column </span></span>
+<span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a>BOS <span class="ot">=</span> Boston <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span> <span class="fu">c</span>(chas))</span>
+<span id="cb120-3"><a href="#cb120-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(BOS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     crim zn indus   nox    rm  age    dis rad tax ptratio  black lstat medv
+1 0.00632 18  2.31 0.538 6.575 65.2 4.0900   1 296    15.3 396.90  4.98 24.0
+2 0.02731  0  7.07 0.469 6.421 78.9 4.9671   2 242    17.8 396.90  9.14 21.6
+3 0.02729  0  7.07 0.469 7.185 61.1 4.9671   2 242    17.8 392.83  4.03 34.7
+4 0.03237  0  2.18 0.458 6.998 45.8 6.0622   3 222    18.7 394.63  2.94 33.4
+5 0.06905  0  2.18 0.458 7.147 54.2 6.0622   3 222    18.7 396.90  5.33 36.2
+6 0.02985  0  2.18 0.458 6.430 58.7 6.0622   3 222    18.7 394.12  5.21 28.7</code></pre>
+</div>
+</div>
+<p>We removed <em>chas</em> as it does not aid in PCA, we could do one hot encoding but I do not think that is necessary for this assignment.</p>
+<p>b.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb122-2"><a href="#cb122-2" aria-hidden="true" tabindex="-1"></a>train_index_BOS <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(BOS), <span class="fl">0.8</span> <span class="sc">*</span> <span class="fu">nrow</span>(BOS))</span>
+<span id="cb122-3"><a href="#cb122-3" aria-hidden="true" tabindex="-1"></a>train_BOS <span class="ot">&lt;-</span> BOS[train_index_BOS,]</span>
+<span id="cb122-4"><a href="#cb122-4" aria-hidden="true" tabindex="-1"></a>test_BOS <span class="ot">&lt;-</span> BOS[<span class="sc">-</span>train_index_BOS,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>c.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb123-2"><a href="#cb123-2" aria-hidden="true" tabindex="-1"></a>BOS_pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(train_BOS <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>medv), <span class="at">scale=</span> <span class="cn">TRUE</span>)</span>
+<span id="cb123-3"><a href="#cb123-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(BOS_pca)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Importance of components:
+                          PC1    PC2     PC3     PC4    PC5     PC6     PC7
+Standard deviation     2.4917 1.1646 1.07883 0.88720 0.7990 0.71136 0.64019
+Proportion of Variance 0.5174 0.1130 0.09699 0.06559 0.0532 0.04217 0.03415
+Cumulative Proportion  0.5174 0.6304 0.72741 0.79300 0.8462 0.88837 0.92252
+                           PC8     PC9    PC10    PC11   PC12
+Standard deviation     0.52282 0.48026 0.42882 0.41361 0.2660
+Proportion of Variance 0.02278 0.01922 0.01532 0.01426 0.0059
+Cumulative Proportion  0.94530 0.96452 0.97985 0.99410 1.0000</code></pre>
+</div>
+</div>
+<p>d.)</p>
+<p>To explain AT LEAST 80% of the variation in this data set you would need 5 PC’s.</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
