@@ -7,11 +7,12 @@ title: "HW4StatsLearn"
 ```{r}
 library(ISLR)
 library(e1071) #For Svm
+library(MASS) 
 ```
 
 ## Question 1:
 
-a.) A real life data example of when a false negative would be less tolerable than a false positive would be a medical screening for a leathal infectious disease.
+a.) A real life data example of when a false negative would be less tolerable than a false positive would be a medical screening for a lethal infectious disease.
 
 b.) A real life data example of when a false positive would be less tolerable than a false negative would be in the case of a security system, should someone break in or not, to know would be more favorable than to not know and someone actually break in to your home.
 
@@ -459,3 +460,33 @@ b.)
 c.)
 
 ## Question 7
+
+a.)
+
+```{r}
+library(dplyr) #this is simply so we can use the pipe command for feasability 
+data(Boston)
+summary(Boston)
+#We used the pipe opperator here, to rename the data set and also remove the chas column 
+BOS = Boston %>% select(- c(chas))
+head(BOS)
+```
+
+We removed chas as it does not aid in PCA, we could do one hot encoding but I do not think that is necessary for this assignment.
+
+b.)
+
+```{r}
+set.seed(1)
+train_index_BOS <- sample(1:nrow(BOS), 0.8 * nrow(BOS))
+train_BOS <- BOS[train_index_BOS,]
+test_BOS <- BOS[-train_index_BOS,]
+```
+
+```{r}
+set.seed(1)
+BOS_pca <- prcomp(train_BOS %>% select(-medv), scale= TRUE)
+summary(BOS_pca)
+```
+
+d.)
