@@ -267,27 +267,19 @@ Auto$high <- ifelse(Auto$mpg > median, 1, 0)
 
 b.)
 
+**Tuned Linear Svm**
+
 ```{r}
 set.seed(1)
 auto_tune <- tune(svm,high~.,data=Auto,kernel="linear", ranges=list(cost=c(0.001, 0.01, 0.1, 1,5,10,100)))
 summary(auto_tune)
 ```
 
-Tuned train error
+Optimal Cost Value is 1.
 
-```{r}
+Cross Validation Error: 0.0742
 
-```
-
-Tuned test error
-
-```{r}
-
-```
-
-c.)
-
-Tuned Radial Svm
+**Tuned Radial Svm**
 
 ```{r}
 set.seed(1)
@@ -295,13 +287,33 @@ auto_tune_radial <- tune(svm,high~.,data=Auto, kernel="radial",ranges=list(cost=
 summary(auto_tune_radial)
 ```
 
-Tuned Polynomial Svm
+Optimal Cost Value is 1
+
+Optimal Gamma Value is 0.5
+
+Cross Validation Error: 0.051
+
+**Tuned Polynomial Svm**
 
 ```{r}
 set.seed(1)
 auto_tune_poly <- tune(svm,high~.,data=Auto,kernel="polynomial",ranges=list(cost=c(0.1,1,10,100,1000),gamma=c(0.5,1,2,3,4),degree=c(2,3,4)))
 summary(auto_tune_poly)
 ```
+
+Optimal Cost Value is 0.1
+
+Optimal Gamma Value is 0.5
+
+Optimal degree is 3
+
+Cross Validation Error: 0.097
+
+e.)
+
+It seems that the best performing SVM kernel was the radial kernel with a
+
+Cross Validation Error: 0.051
 
 ## Question 5
 
@@ -453,6 +465,14 @@ cat("Test Error Rate:", 100 * calc_error_rate(svm_radial_OJ, OJ_test, OJ_test$Pu
 
 e.)
 
+The best performing SVM Kernel was: The tuned radial kernel
+
+Training Error: 14.875 %
+
+However the best performing SVM Kernel for testing data was the tuned linear kernel
+
+Test Error: 15.55556 %
+
 ## Question 6
 
 a.)
@@ -463,15 +483,95 @@ set.seed(1)
 trainIrisIndex <- sample(1:nrow(iris), 0.8 * nrow(iris))
 train_iris <- iris[trainIrisIndex, ]
 test_iris <- iris[-trainIrisIndex, ]
+
+#y is Species
 ```
 
-b.)
+b.) & c.)
+
+i.)
 
 ```{r}
+set.seed(1)
 
+svm_tune_iris_linear <- tune(svm, Species ~ . , data = train_iris, kernel = "linear", 
+                  ranges = list(cost = seq(0.01, 10, length = 50)))
+summary(svm_tune_iris_linear)
 ```
 
-c.)
+Train Error
+
+```{r}
+set.seed(1)
+svm_linear_iris <- svm(Species ~ . , kernel = "linear", 
+                  data = train_iris, cost = svm_tune_iris_linear$best.parameters$cost)
+
+cat("Training Error Rate:", 100 * calc_error_rate(svm_linear_iris, train_iris, train_iris$Species), "%\n")
+```
+
+Test Error
+
+```{r}
+cat("Test Error Rate:", 100 * calc_error_rate(svm_linear_iris, test_iris, test_iris$Species), "%\n")
+```
+
+ii.)
+
+```{r}
+set.seed(1)
+
+svm_tune_poly_iris <- tune(svm, Species ~ . , data = train_iris, kernel = "poly", 
+                  degree = 2, ranges = list(cost = seq(0.01, 10, length = 100)))
+summary(svm_tune_poly_iris)
+```
+
+Train Error
+
+```{r}
+set.seed(1)
+svm_poly_iris <- svm(Species ~ . , data = train_iris, kernel = "poly", 
+                 degree = 2, cost = svm_tune_poly_iris$best.parameters$cost)
+
+cat("Training Error Rate:", 100 * calc_error_rate(svm_poly_iris, train_iris, train_iris$Species), "%\n")
+```
+
+Test Error
+
+```{r}
+cat("Test Error Rate:", 100 * calc_error_rate(svm_poly_iris, test_iris, test_iris$Species), "%\n")
+```
+
+iii.)
+
+```{r}
+set.seed(1)
+
+svm_tune_iris_radial <- tune(svm, Species ~ . , data = train_iris, kernel = "radial",
+                  ranges = list(cost = seq(0.01, 10, length = 100)))
+summary(svm_tune_iris_radial)
+```
+
+Train Error
+
+```{r}
+set.seed(1)
+svm_radial_iris <- svm(Species ~ . , data = train_iris, kernel = "radial",
+                   cost = svm_tune_iris_radial$best.parameters$cost)
+
+cat("Training Error Rate:", 100 * calc_error_rate(svm_radial_iris, train_iris, train_iris$Species), "%\n")
+```
+
+Test Error
+
+```{r}
+cat("Test Error Rate:", 100 * calc_error_rate(svm_radial_iris, test_iris, test_iris$Species), "%\n")
+```
+
+It seems that the linear SVM model has the best Testing and Training error at 1.666667 % and 0% respectively.
+
+d.)
+
+N/A
 
 ## Question 7
 
@@ -486,7 +586,7 @@ BOS = Boston %>% select(- c(chas))
 head(BOS)
 ```
 
-We removed chas as it does not aid in PCA, we could do one hot encoding but I do not think that is necessary for this assignment.
+We removed *chas* as it does not aid in PCA, we could do one hot encoding but I do not think that is necessary for this assignment.
 
 b.)
 
@@ -497,6 +597,8 @@ train_BOS <- BOS[train_index_BOS,]
 test_BOS <- BOS[-train_index_BOS,]
 ```
 
+c.)
+
 ```{r}
 set.seed(1)
 BOS_pca <- prcomp(train_BOS %>% select(-medv), scale= TRUE)
@@ -504,3 +606,5 @@ summary(BOS_pca)
 ```
 
 d.)
+
+To explain AT LEAST 80% of the variation in this data set you would need 5 PC's.
